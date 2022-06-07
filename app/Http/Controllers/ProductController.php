@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
-
 class ProductController extends Controller
 {
     public function index()
     {
-        return view('shop.index');
+        $products = Product::all();
+        // dd($products);
+        return view('shop.index', compact('products'));
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('shop.show');
+        $product = Product::FindOrFail($id);
+        // dd($product);
+        return view('shop.show', compact('product'));
     }
 }
